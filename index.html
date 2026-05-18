@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joseph T. Moran — Senior Technical Service Delivery Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:    #0f1f3d;
+    --navy2:   #1b3460;
+    --blue:    #2a5298;
+    --accent:  #c8a96e;
+    --light:   #f5f3ee;
+    --white:   #fdfcfa;
+    --muted:   #7a7a72;
+    --rule:    #d6cfbf;
+    --text:    #1e1e1e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── SIDEBAR LAYOUT ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--navy);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 52px 32px 40px;
+    overflow-y: auto;
+  }
+
+  .sidebar-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--white);
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s forwards;
+  }
+
+  .sidebar-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.25s forwards;
+  }
+
+  .sidebar-certs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.35s forwards;
+  }
+
+  .cert-badge {
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  .sidebar-rule {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 32px;
+  }
+
+  .contact-block {
+    opacity: 0;
+    animation: fadeUp 0.7s 0.45s forwards;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .contact-icon {
+    width: 14px;
+    height: 14px;
+    margin-top: 3px;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  .contact-item a,
+  .contact-item span {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    line-height: 1.4;
+  }
+
+  .contact-item a:hover { color: var(--accent); }
+
+  .sidebar-section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 32px 0 14px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.55s forwards;
+  }
+
+  .skills-list {
+    opacity: 0;
+    animation: fadeUp 0.7s 0.65s forwards;
+  }
+
+  .skill-item {
+    font-size: 0.77rem;
+    color: rgba(255,255,255,0.65);
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .skill-item::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .sidebar-tools {
+    opacity: 0;
+    animation: fadeUp 0.7s 0.75s forwards;
+  }
+
+  .tool-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .tool-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.55);
+    padding: 3px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding-top: 32px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.85s forwards;
+  }
+
+  .sidebar-footer p {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.25);
+    line-height: 1.6;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    background: var(--white);
+    padding: 60px 64px 80px 64px;
+    max-width: 860px;
+  }
+
+  /* ── SUMMARY ── */
+  .summary-block {
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.3s forwards;
+  }
+
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .summary-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.22rem;
+    font-weight: 400;
+    line-height: 1.75;
+    color: #2a2a2a;
+    max-width: 680px;
+  }
+
+  /* ── EXPERIENCE ── */
+  .experience-section {
+    margin-bottom: 48px;
+  }
+
+  .job {
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: fadeUp 0.6s forwards;
+  }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .job-company {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.01em;
+  }
+
+  .job-dates {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .job-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .job-role {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 0.02em;
+  }
+
+  .job-location {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .job-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    background: #eef2f8;
+    color: var(--blue);
+    padding: 2px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+  }
+
+  .job-bullets {
+    list-style: none;
+    padding: 0;
+    border-left: 2px solid var(--rule);
+    padding-left: 20px;
+  }
+
+  .job-bullets li {
+    font-size: 0.855rem;
+    color: #3a3a3a;
+    line-height: 1.72;
+    padding: 5px 0;
+    position: relative;
+  }
+
+  .job-bullets li::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 14px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 1.5px solid var(--accent);
+  }
+
+  .job-rule {
+    height: 1px;
+    background: var(--rule);
+    margin: 36px 0;
+    opacity: 0.6;
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .cert-section {
+    opacity: 0;
+    animation: fadeUp 0.7s 0.2s forwards;
+  }
+
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .cert-card {
+    background: var(--light);
+    border: 1px solid var(--rule);
+    padding: 20px 18px;
+    border-top: 3px solid var(--navy2);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .cert-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(15,31,61,0.08);
+  }
+
+  .cert-code {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+
+  .cert-name {
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .cert-issuer {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { position: relative; height: auto; padding: 40px 28px; }
+    .main { padding: 40px 28px 60px; max-width: 100%; }
+    .cert-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    .cert-grid { grid-template-columns: 1fr; }
+    .job-header { flex-direction: column; }
+  }
+
+  /* Scroll fade-in for jobs */
+  .job { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .job.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar">
+    <div class="sidebar-name">Joseph T.<br>Moran</div>
+    <div class="sidebar-title">Senior Technical Service<br>Delivery Manager</div>
+
+    <div class="sidebar-certs">
+      <span class="cert-badge">CISSP</span>
+      <span class="cert-badge">CISM</span>
+    </div>
+
+    <div class="sidebar-rule"></div>
+
+    <div class="contact-block">
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+        <span>New York, NY</span>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        <span>917.270.3540</span>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        <a href="mailto:josephtmoran@fiditechnologies.com">josephtmoran@<br>fiditechnologies.com</a>
+      </div>
+    </div>
+
+    <div class="sidebar-section-label">Core Competencies</div>
+    <div class="skills-list">
+      <div class="skill-item">Technical Service Delivery</div>
+      <div class="skill-item">GRC &amp; Cybersecurity Governance</div>
+      <div class="skill-item">Infrastructure &amp; Data Center Ops</div>
+      <div class="skill-item">Cloud Transformation (Azure / SASE)</div>
+      <div class="skill-item">M&amp;A Integration &amp; TOM Alignment</div>
+      <div class="skill-item">AML / KYC / Compliance Programs</div>
+      <div class="skill-item">SAFe Agile | Waterfall | Hybrid PMO</div>
+      <div class="skill-item">Risk Frameworks &amp; KRI Dashboards</div>
+      <div class="skill-item">Vendor Management &amp; Negotiations</div>
+      <div class="skill-item">Executive Stakeholder Communication</div>
+    </div>
+
+    <div class="sidebar-section-label" style="animation-delay:0.7s">Tools &amp; Platforms</div>
+    <div class="sidebar-tools">
+      <div class="tool-tags">
+        <span class="tool-tag">ServiceNow</span>
+        <span class="tool-tag">Jira</span>
+        <span class="tool-tag">Confluence</span>
+        <span class="tool-tag">RSA Archer</span>
+        <span class="tool-tag">Power BI</span>
+        <span class="tool-tag">MS Project</span>
+        <span class="tool-tag">Azure</span>
+        <span class="tool-tag">SASE</span>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <p>New York City Metropolitan Area<br>Available for senior enterprise engagements</p>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN ══ -->
+  <main class="main">
+
+    <!-- Summary -->
+    <div class="summary-block">
+      <div class="section-eyebrow">Profile</div>
+      <p class="summary-text">
+        Senior Technical Service Delivery Manager with 15+ years leading large-scale transformation programs across regulated financial services, capital markets, and global hedge funds. Deep expertise spanning infrastructure delivery, cloud modernization, cybersecurity governance, and GRC — with a consistent record of managing distributed teams through M&A integrations, compliance-driven platform builds, and enterprise technology transitions. Trusted advisor to C-suite stakeholders; adept at translating complex technical risk into governance frameworks, KRI dashboards, and audit-ready outcomes.
+      </p>
+    </div>
+
+    <!-- Experience -->
+    <div class="experience-section">
+      <div class="section-eyebrow">Experience</div>
+
+      <!-- TD Securities -->
+      <div class="job">
+        <div class="job-header">
+          <span class="job-company">TD Securities</span>
+          <span class="job-dates">Aug 2024 – Present</span>
+        </div>
+        <div class="job-meta">
+          <span class="job-role">Senior Delivery Manager, Global Technology &amp; Solutions</span>
+          <span class="job-location">New York, NY</span>
+          <span class="job-tag">M&amp;A Engagement</span>
+        </div>
+        <ul class="job-bullets">
+          <li>Led end-to-end post-acquisition integration of Cowen's technology estate into TD Securities, consolidating trading floor systems, network and cloud connectivity, data centers, and real estate into a secure, low-latency enterprise platform — driving alignment to a defined Target Operating Model (TOM) and coordinating seamless transition of systems, employees, and clients into steady-state governance and Day-2 operations.</li>
+          <li>Owned enterprise AML platform implementation across transaction surveillance, sanctions screening, KYC/CDD, and case management — partnering with network engineering to provision connectivity, scale North American compliance operations, and onboard AI and NLP-driven remedies within established compliance and information security standards.</li>
+          <li>Built and maintained KRI frameworks, executive dashboards, and governance reporting to support AML remediation and ongoing risk visibility across integrated Cowen and TD environments, translating control data into actionable insights for Legal, Risk, Compliance, and HR leadership.</li>
+          <li>Standardized data integration and control analytics across legacy Cowen and enterprise TD platforms, driving GRC platform enhancements that streamlined workflows, strengthened control lifecycle processes, and improved issue management across compliance and cybersecurity domains.</li>
+          <li>Served as primary risk and governance partner to executive stakeholders, proactively identifying, mitigating, and escalating cybersecurity and privacy risks while coordinating compliant onboarding of all systems, employees, and customers through enterprise technology target state milestones.</li>
+          <li>Governed program delivery within a SAFe Agile framework, leveraging Jira and Confluence for sprint planning and ServiceNow for workflow automation, governance tracking, and PMO reporting across a complex, multi-workstream post-acquisition program.</li>
+        </ul>
+      </div>
+
+      <div class="job-rule"></div>
+
+      <!-- Brevan Howard -->
+      <div class="job">
+        <div class="job-header">
+          <span class="job-company">Brevan Howard Asset Management</span>
+          <span class="job-dates">Mar 2023 – Jul 2024</span>
+        </div>
+        <div class="job-meta">
+          <span class="job-role">Senior Information Technology Program Manager</span>
+          <span class="job-location">New York, NY</span>
+        </div>
+        <ul class="job-bullets">
+          <li>Directed the design, construction, and deployment of Brevan Howard's 83,000+ sq. ft. New York headquarters expansion, delivering enterprise workplace and network infrastructure with zero disruption to live trading operations — while decommissioning legacy data center assets and consolidating infrastructure to reduce footprint, lower costs, and enhance governance and scalability.</li>
+          <li>Led enterprise cloud modernization and Azure adoption, partnering with cybersecurity and solutions architecture teams to migrate mission-critical trading applications to secure cloud platforms with integrated data governance, access controls, and endpoint standardization.</li>
+          <li>Implemented a global Secure Access Service Edge (SASE) framework to strengthen cybersecurity posture, optimize remote access, and enable low-latency connectivity for distributed traders and quantitative teams across multiple regions.</li>
+          <li>Managed cross-functional teams of project managers and consultants executing parallel workstreams across network domain migrations, digital-asset infrastructure integrations, and ongoing global trader support across multiple time zones.</li>
+          <li>Owned end-to-end data center decommissioning and infrastructure consolidation, supporting Portfolio Manager and front-office trading operations through seamless transitions with no interruption to mission-critical systems.</li>
+          <li>Provided executive-level reporting and stakeholder alignment, ensuring clear visibility into program status, risks, and strategic decisions — translating technical execution into actionable insights for senior leadership and investment teams.</li>
+        </ul>
+      </div>
+
+      <div class="job-rule"></div>
+
+      <!-- VSI -->
+      <div class="job">
+        <div class="job-header">
+          <span class="job-company">VSI Technologies</span>
+          <span class="job-dates">Apr 2017 – Jan 2023</span>
+        </div>
+        <div class="job-meta">
+          <span class="job-role">Network Infrastructure Program Manager</span>
+          <span class="job-location">New York, NY</span>
+        </div>
+        <ul class="job-bullets">
+          <li>Delivered multiple concurrent client infrastructure migration programs, translating business requirements into execution plans, deployment schedules, and delivery milestones aligned to client timelines, budget constraints, and operational priorities.</li>
+          <li>Designed and supported remotely managed infrastructure solutions, enabling clients to scale securely and maintain service continuity during COVID-era workforce shifts and long-term distributed operating models.</li>
+          <li>Partnered with global solution architects and client stakeholders to assess network readiness and support the transformation of application portfolios to cloud-based environments.</li>
+          <li>Managed data center service delivery including IMAC, circuit provisioning, cross-connects, and client connectivity — ensuring minimal disruption to business operations and full alignment with SLA and governance obligations.</li>
+          <li>Provided executive-level visibility and strategic decision support, enabling leadership to balance growth, cost efficiency, and risk while accelerating transformation outcomes.</li>
+        </ul>
+      </div>
+
+      <div class="job-rule"></div>
+
+      <!-- NYSE -->
+      <div class="job">
+        <div class="job-header">
+          <span class="job-company">New York Stock Exchange</span>
+          <span class="job-dates">Feb 2012 – Mar 2017</span>
+        </div>
+        <div class="job-meta">
+          <span class="job-role">Senior Technical Project Manager</span>
+          <span class="job-location">New York, NY</span>
+        </div>
+        <ul class="job-bullets">
+          <li>Led global program and project management across infrastructure, cybersecurity, data center, application, and market data deployments within the NYSE SFTI network.</li>
+          <li>Managed a U.S.-based PMO team, introducing standardized project management methodologies and developing SLA policies for onboarding and maintaining Content Service Providers (CSPs).</li>
+          <li>Contributed to PMO frameworks and reporting standards aligned with RegSCI, SEC, and other regulatory requirements, ensuring governance compliance across all initiatives.</li>
+          <li>Developed and executed test plans for major product launches including NYSE BQT, NMS, and proprietary market data products — coordinating functional testing, UAT, and production onboarding.</li>
+        </ul>
+      </div>
+
+      <div class="job-rule"></div>
+
+      <!-- Wells Fargo -->
+      <div class="job">
+        <div class="job-header">
+          <span class="job-company">Wells Fargo</span>
+          <span class="job-dates">Feb 2011 – Feb 2012</span>
+        </div>
+        <div class="job-meta">
+          <span class="job-role">Integration Project Manager – Specialized Financial Services</span>
+          <span class="job-location">New York, NY</span>
+          <span class="job-tag">M&amp;A Consultant · Wachovia Integration</span>
+        </div>
+        <ul class="job-bullets">
+          <li>Led regulated technology integration workstreams for the Wachovia–Wells Fargo merger, managing high-risk infrastructure consolidation initiatives from initiation through operational readiness.</li>
+          <li>Established integration governance by coordinating requirements, design options, delivery schedules, and cost controls to align legacy Wachovia platforms with Wells Fargo enterprise architecture, security standards, and risk frameworks.</li>
+          <li>Partnered with Information Security, data center, engineering, and international service teams to ensure compliance with merger governance, risk management, and operational readiness controls — providing executive-level reporting to maintain timeline and decision alignment.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="cert-section">
+      <div class="section-eyebrow">Certifications &amp; Education</div>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <div class="cert-code">CISSP</div>
+          <div class="cert-name">Certified Information Systems Security Professional</div>
+          <div class="cert-issuer">ISC²</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-code">CISM</div>
+          <div class="cert-name">Certified Information Security Manager</div>
+          <div class="cert-issuer">ISACA</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-code">MPM</div>
+          <div class="cert-name">Master Project Manager Certificate</div>
+          <div class="cert-issuer">Villanova University</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  // Scroll-triggered fade-in for job entries
+  const jobs = document.querySelectorAll('.job');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.08 });
+  jobs.forEach(j => observer.observe(j));
+</script>
+</body>
+</html>
